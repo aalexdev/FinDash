@@ -22,8 +22,6 @@ Chart.js: Biblioteca utilizada para a renderização dos gráficos interativos.
 Google Fonts: Tipografias personalizadas (Syne e DM Mono).
 
 # Estrutura do Projeto
-Plaintext
-
 
 ├── index.html          # Página principal (Dashboard)
 
