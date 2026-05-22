@@ -23,11 +23,16 @@ Google Fonts: Tipografias personalizadas (Syne e DM Mono).
 
 # Estrutura do Projeto
 Plaintext
-/
+
+
 ├── index.html          # Página principal (Dashboard)
+
 ├── transacoes.html     # Histórico completo de transações
+
 ├── metas.html          # Painel de metas de economia
+
 ├── style.css           # Estilização global
+
 └── script.js           # Lógica centralizada de todo o app
 
 # Como Rodar
