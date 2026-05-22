@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>FinDash — Metas</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=DM+Mono:ital,wght@0,300;0,400;0,500;1,300&family=Syne:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --bg-base:       #0c0d10;
+      --bg-card:       #13151a;
+      --bg-card2:      #1a1d24;
+      --border:        rgba(255,255,255,0.07);
+      --accent:        #c8f135;
+      --accent-dim:    rgba(200,241,53,0.12);
+      --blue:          #5ac8fa;
+      --amber:         #ffb340;
+      --purple:        #bf5af2;
+      --text-primary:  #f0f0f0;
+      --text-secondary:#8a8f9e;
+      --text-dim:      #4a4f5e;
+      --radius-sm:     8px;
+      --radius-md:     14px;
+      --font-display:  'Syne', sans-serif;
+      --font-mono:     'DM Mono', monospace;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: var(--font-mono); background: var(--bg-base); color: var(--text-primary); min-height: 100vh; background-image: radial-gradient(circle, rgba(255,255,255,0.03) 1px, transparent 1px); background-size: 28px 28px; }
+    .app { display: flex; min-height: 100vh; }
+
+    .sidebar { width: 220px; min-height: 100vh; background: var(--bg-card); border-right: 1px solid var(--border); display: flex; flex-direction: column; padding: 28px 16px; position: fixed; top: 0; left: 0; bottom: 0; }
+    .logo { font-family: var(--font-display); font-size: 22px; font-weight: 800; color: var(--accent); letter-spacing: -0.5px; margin-bottom: 36px; padding-left: 8px; }
+    .logo span { color: var(--text-secondary); font-weight: 400; }
+    .nav-btn { display: flex; align-items: center; gap: 10px; padding: 10px 12px; border-radius: var(--radius-sm); border: none; background: transparent; color: var(--text-secondary); font-family: var(--font-mono); font-size: 13px; cursor: pointer; width: 100%; text-align: left; transition: all 0.18s; margin-bottom: 4px; }
+    .nav-btn:hover { background: var(--bg-card2); color: var(--text-primary); }
+    .nav-btn.active { background: var(--accent-dim); color: var(--accent); }
+    .nav-btn .icon { font-size: 16px; width: 20px; text-align: center; }
+    .sidebar-footer { margin-top: auto; font-size: 11px; color: var(--text-dim); padding-left: 8px; line-height: 1.6; }
+
+    .content { margin-left: 220px; flex: 1; padding: 32px 36px; max-width: calc(100% - 220px); }
+    .page-header { display: flex; align-items: flex-start; justify-content: space-between; margin-bottom: 28px; flex-wrap: wrap; gap: 16px; }
+    .page-title { font-family: var(--font-display); font-size: 28px; font-weight: 700; letter-spacing: -0.5px; }
+    .page-subtitle { font-size: 13px; color: var(--text-secondary); margin-top: 4px; }
+
+    .goals-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px; }
+    
+    .goal-card-large { background: var(--bg-card); border: 1px solid var(--border); border-radius: var(--radius-md); padding: 26px; animation: fadeUp 0.4s ease both; position: relative; overflow: hidden; }
+    .goal-card-large::before { content: ''; position: absolute; top: 0; left: 0; width: 4px; height: 100%; }
+    .goal-card-large.accent::before { background: var(--accent); }
+    .goal-card-large.blue::before { background: var(--blue); }
+    .goal-card-large.purple::before { background: var(--purple); }
+    .goal-card-large.amber::before { background: var(--amber); }
+
+    .goal-header-large { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 20px; }
+    .goal-icon-title { display: flex; align-items: center; gap: 12px; }
+    .goal-icon-bg { width: 44px; height: 44px; background: var(--bg-card2); border-radius: 10px; display: flex; align-items: center; justify-content: center; font-size: 20px; border: 1px solid var(--border); }
+    .goal-name-large { font-family: var(--font-display); font-size: 18px; font-weight: 600; }
+    
+    .goal-stats { margin-bottom: 14px; }
+    .goal-values { display: flex; justify-content: space-between; align-items: flex-end; margin-bottom: 8px; }
+    .goal-current { font-family: var(--font-display); font-size: 22px; font-weight: 700; }
+    .goal-target { font-size: 12px; color: var(--text-secondary); margin-bottom: 4px; }
+    
+    .goal-bar-large { height: 8px; background: var(--bg-card2); border-radius: 99px; overflow: hidden; margin-bottom: 10px; }
+    .goal-fill-large { height: 100%; border-radius: 99px; transition: width 1s cubic-bezier(0.4,0,0.2,1); }
+    
+    .goal-footer { display: flex; justify-content: space-between; font-size: 12px; color: var(--text-secondary); }
+    .goal-pct-large { font-weight: 600; color: var(--text-primary); }
+
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(14px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+  </style>
+</head>
+<body>
+
+<div class="app">
+  <aside class="sidebar">
+    <div class="logo">Fin<span>Dash</span></div>
+
+    <button class="nav-btn" onclick="window.location.href='home.html'">
+      <span class="icon">◈</span> Dashboard
+    </button>
+    <button class="nav-btn" onclick="window.location.href='transacoes.html'">
+      <span class="icon">⇌</span> Transações
+    </button>
+    <button class="nav-btn active" onclick="window.location.href='metas.html'">
+      <span class="icon">◎</span> Metas
+    </button>
+
+    <div class="sidebar-footer">FinDash v1.0<br>Dados fictícios</div>
+  </aside>
+
+  <main class="content">
+    <div class="page-header">
+      <div>
+        <div class="page-title">Metas de Economia</div>
+        <div class="page-subtitle">Acompanhe o progresso dos seus objetivos</div>
+      </div>
+    </div>
+
+    <div class="goals-grid" id="goalsContainer"></div>
+  </main>
+</div>
+
+<script>
+  const metasDetalhes = [
+    { nome: 'Viagem', icon: '🏖', guardado: 2100, alvo: 3000, cor: 'accent', corHex: 'var(--accent)' },
+    { nome: 'Notebook', icon: '💻', guardado: 1250, alvo: 5000, cor: 'blue', corHex: 'var(--blue)' },
+    { nome: 'Reserva Emergência', icon: '🏠', guardado: 4500, alvo: 10000, cor: 'purple', corHex: 'var(--purple)' },
+    { nome: 'Carro Novo', icon: '🚗', guardado: 5000, alvo: 25000, cor: 'amber', corHex: 'var(--amber)' }
+  ];
+
+  function formatBRL(n) {
+    return n.toLocaleString('pt-BR', { style:'currency', currency:'BRL' });
+  }
+
+  function renderizarMetas() {
+    const cont = document.getElementById('goalsContainer');
+    
+    cont.innerHTML = metasDetalhes.map(m => {
+      const pct = Math.min(100, Math.round((m.guardado / m.alvo) * 100));
+      const faltam = m.alvo - m.guardado;
+      
+      return `
+        <div class="goal-card-large ${m.cor}">
+          <div class="goal-header-large">
+            <div class="goal-icon-title">
+              <div class="goal-icon-bg">${m.icon}</div>
+              <div class="goal-name-large">${m.nome}</div>
+            </div>
+          </div>
+          
+          <div class="goal-stats">
+            <div class="goal-values">
+              <div class="goal-current">${formatBRL(m.guardado)}</div>
+              <div class="goal-target">Meta: ${formatBRL(m.alvo)}</div>
+            </div>
+            <div class="goal-bar-large">
+              <div class="goal-fill-large" style="background:${m.corHex}; width:${pct}%"></div>
+            </div>
+            <div class="goal-footer">
+              <span class="goal-pct-large">${pct}% concluído</span>
+              <span>Faltam ${formatBRL(faltam)}</span>
+            </div>
+          </div>
+        </div>
+      `;
+    }).join('');
+  }
+
+  renderizarMetas();
+</script>
+</body>
+</html>
