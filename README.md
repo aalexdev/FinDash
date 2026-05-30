@@ -47,5 +47,3 @@ Certifique-se de que todos os arquivos (.html, style.css e script.js) estejam na
 Abra o arquivo index.html em qualquer navegador moderno.
 
 Desenvolvido como um projeto de estudo para gestão financeira pessoal. 
-
-
