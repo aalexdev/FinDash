@@ -2,6 +2,7 @@
 O FinDash é um dashboard financeiro moderno e intuitivo, desenvolvido para ajudar no controle de gastos, organização de receitas e acompanhamento de metas financeiras. Focado em uma experiência de usuário limpa, ele utiliza um tema dark mode elegante e gráficos dinâmicos para facilitar a visualização da saúde financeira.
 
 
+
 # Demonstração Online
 👉 **[Acesse o FinDash Aqui!](https://aalexdev.github.io/FinDash/)**
 
