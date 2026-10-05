@@ -35,15 +35,3 @@ Google Fonts: Tipografias personalizadas (Syne e DM Mono).
 ├── style.css           # Estilização global
 
 └── script.js           # Lógica centralizada de todo o app
-
-# Como Rodar
-Este é um projeto Client-Side, o que significa que não precisa de um servidor ou banco de dados para rodar.
-
-Clone este repositório para a sua máquina:
-git clone https://github.com/SEU_USUARIO/findash.git
-
-Certifique-se de que todos os arquivos (.html, style.css e script.js) estejam na mesma pasta.
-
-Abra o arquivo index.html em qualquer navegador moderno.
-
-Desenvolvido como um projeto de estudo para gestão financeira pessoal. 
